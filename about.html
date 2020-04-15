@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>About Us</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" >
+<link rel="stylesheet" type="text/css" href="style.css" >
+<script>
+
+		function openNav() {
+    			document.getElementById("mySidenav").style.width = "250px";
+		}
+
+
+
+
+		function init(){
+		
+		xhr = new XMLHttpRequest();	
+			if(xhr)
+			{
+				xhr.onreadystatechange = getContent;
+				xhr.open("GET", "content.txt", true);
+				xhr.send(null);
+			}	
+		}
+		function getContent(){
+		
+		if(xhr.readyState=="4"&&xhr.status==200){
+				var arr=(xhr.responseText).split(";");
+				document.getElementById("secondary").innerHTML=arr[0];
+				/*document.getElementById("points").innerHTML=arr[3];*/
+				/*document.getElementById("last").innerHTML=arr[3];*/
+				document.getElementById("logo").innerHTML=arr[3];
+				document.getElementById("rose").innerHTML=arr[3];
+				document.getElementById("daisy").innerHTML=arr[3];
+				document.getElementById("tulip").innerHTML=arr[3];
+				document.getElementById("dandelion").innerHTML=arr[3];
+				document.getElementById("yellowdand").innerHTML=arr[3];
+				document.getElementById("redtulip").innerHTML=arr[3];
+				document.getElementById("sunflower").innerHTML=arr[3]; 
+				/*document.getElementById("link").innerHTML=arr[3]; */
+				setTimeout(getpoints, 1000);	
+		  }
+		
+		
+		}
+
+
+
+		function getpoints(){
+		
+			xhr.open("GET", "points.txt", true);
+			xhr.onreadystatechange = showpoints;
+			xhr.send(null);
+		
+		
+		}
+		function showpoints()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("points").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getrose,2000);
+			
+		}
+
+
+		function getrose(){
+		
+			xhr.open("GET", "image.txt", true);
+			xhr.onreadystatechange = showImg;
+			xhr.send(null);
+		
+		
+		}
+		function showImg()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("rose").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getdaisy,2000);
+			
+		}
+		function getdaisy(){
+		
+				xhr.onreadystatechange=showdaisy;
+				xhr.open("GET","daisy.txt",true);
+				xhr.send();
+		}
+		function showdaisy(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("daisy").innerHTML = xhr.responseText;	
+			}
+			setTimeout(gettulip,1500);
+		
+		
+		}
+		
+		function gettulip(){
+				xhr.onreadystatechange=showtulip;
+				xhr.open("GET","tulip.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showtulip(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("tulip").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getdandelion,1500);
+		
+		
+		}
+
+		
+
+		function getdandelion(){
+				xhr.onreadystatechange=showdandelion;
+				xhr.open("GET","dandelion.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showdandelion(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("dandelion").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getsunflower,1000);
+		
+		
+		}
+		
+
+
+		function getsunflower(){
+				xhr.onreadystatechange=showsunflower;
+				xhr.open("GET","sunflower.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showsunflower(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("sunflower").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getyellowdand,1500);
+		
+		
+		}
+
+
+		function getyellowdand(){
+				xhr.onreadystatechange=showyellowdand;
+				xhr.open("GET","yellowdand.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showyellowdand(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("yellowdand").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getredtulip,100);
+		
+		
+		}
+
+
+
+
+
+
+
+
+		function getredtulip(){
+				xhr.onreadystatechange=showredtulip;
+				xhr.open("GET","redtulip.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showredtulip(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("redtulip").innerHTML = xhr.responseText;	
+			}
+			setTimeout(null,500);
+		
+		
+		}
+
+
+		/*function getlast(){
+				xhr.onreadystatechange=showlast;
+				xhr.open("GET","last.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showlast(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("last").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getlink,900);
+		
+		
+		}
+		
+
+		function getlink(){
+				xhr.onreadystatechange=showlink;
+				xhr.open("GET","link.txt",true);
+				xhr.send();
+
+
+		}
+
+		function showlink(){
+		
+				if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("link").innerHTML = xhr.responseText;	
+			}
+			setTimeout(null,1000);
+		
+		
+		}*/
+
+		
+
+
+
+
+
+</script>
+</head >
+<body onload="init()" style="background-color:#4b4743 "><!-- #717171  #ffa64d  #cf7500   #cc3300 #FF0033      #b8a9c9    #ff6f69-->
+<!--<div id="doc" class="yui-t7">-->
+
+<svg height="130" width="500">
+<defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"
+      style="stop-color:rgb(7,13,96);stop-opacity:1" />
+      <stop offset="100%"
+      style="stop-color:rgb(40,149,211);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+<ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+  <text fill="orange" font-size="45" font-family="Verdana" 
+  x="50" y="86">FlowerRecognize!!</text>
+
+</svg>
+
+
+<div class="topnav"><br>
+<!--<span style="font-size:25px;color: white; cursor:pointer" onclick="openNav()">&#9776; </span>-->
+	
+   <a href="home.html" style="float:right;" id="jack">Go to Home Page</a>
+   
+</div><br>
+
+</div>
+ 
+
+
+
+
+
+  <!--<div id="hd">
+    <div id="header"><h1>Maanch Blossoms...Presents Flower Recognize!</h1></div>
+  </div>-->
+
+
+
+
+  <div id="bd">
+    <div id="yui-main">
+      <div class="yui-b">
+        <div class="yui-gb">
+          <div class="yui-u first">
+		  <div class="content" id="rose">  Rose  <div id="logo"></div></div> <!-- the loading gif -->
+            
+          </div>
+          <div class="yui-u">
+            <div class="content" id="daisy">Daisy</div>
+          </div>
+          <div class="yui-u">
+            <div class="content" id="tulip">Tulip</div>
+          </div>
+	<div class="yui-u">
+            <div class="content" id="dandelion">Dandelion</div>
+          </div>		
+
+	<div class="yui-u">
+            <div class="content" id="sunflower">Sunflower</div>
+          </div>
+	<div class="yui-u">
+            <div class="content" id="yellowdand">Dandelions</div>
+          </div>
+
+
+	<div class="yui-u">
+            <div class="content" id="redtulip">Redtulip</div>
+          </div>
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="yui-b">
+      <div id="secondary">Text Content</div>
+	
+    </div>
+	<div class="yui-b">
+		<div id="points">Flowers at home</div>
+	</div>
+
+	<!--<div class="yui-b">
+		<div id="last">encouragement</div>
+	</div>
+	<div class="yui-b">
+	  <div id="link">Waiting to load link...</div>
+	</div>-->
+
+  </div>
+  <!--<div id="ft">
+    <div id="footer">Footer</div>-->
+  </div>
+<!--</div>-->
+</body>
+</html>

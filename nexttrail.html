@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" ng-app="APP">
+<head>
+<meta charset=UTF-8">
+<title>KNOW THE FLOWER</title>
+</head>
+<style>
+.thumb{
+    width:250px;
+    margin:10px;
+    float:left;
+}
+button {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 3px 2px;
+  cursor: pointer;
+}
+.uploader{
+    clear:both;
+}
+form
+{
+ width:2500px;
+    margin:10px;
+    float:left;
+    align:"bottom";
+}
+.hello {
+border:1px solid black;
+  position: bottom;
+  bottom: 10px;
+  width: 50%;
+  
+}
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5em;
+	font-family: Verdana, Arial, san-serif;
+	font-size: 15px;
+			color: #ffffff;
+
+	background: #4b4743;
+	 
+color:#66FCF1;
+	
+
+}
+
+h1{display:inline;
+}
+h3{display:inline;float:right;}
+h2{float:center;}
+a{align:right;}
+.icon{display:inline;float:left;padding-right:180px;}
+.image{display:inline;padding-left:80px;}
+#actualbottom{padding-left:30px;color:white;}
+.formarea input[type=text],
+.formarea input[type=email],
+.formarea textarea{
+	border:none;
+	border-bottom:1px solid#ffffff;
+	background-color:transparent;
+	color:white;}
+	.topnav {
+    overflow:hidden;
+    background-color:orange;
+}
+#about {
+  color: white;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.topnav p {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+    background-color: blue;
+    color: white;
+}
+#about {
+  color: white;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.topnav p {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+    background-color: blue;
+    color: white;
+}
+.images{
+align:center;
+  width: 1150px;
+  height:300px;
+  border: 15px solid orange;
+  padding: 50px;
+  margin: 20px;
+  left: 100px;
+	right: 100px;
+}
+
+</style>
+<body>
+	<svg height="130" width="500">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"
+      style="stop-color:rgb(7,13,96);stop-opacity:1" />
+      <stop offset="100%"
+      style="stop-color:rgb(40,149,211);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)"/>
+  <text fill="orange" font-size="40" font-family="Verdana" 
+  x="50" y="86">FlowerRecognize!!</text>
+</svg>
+<br>
+<br>
+
+  <div class="topnav">
+  
+
+ 
+	<a href="home.html" style="float:right;"><u>Back home</u></a>
+	<a href="nextrail.html" style="float:right;"><u>Click to Upload again!</u></a>
+
+	</div>
+	<br>
+	<br>
+<div class="images" align="center">
+<p align="center">PLEASE UPLOAD ONLY JPG FORMAT</p>
+<div ng-controller = "myCtrl" align="center">
+<div ng-repeat="step in stepsModel">
+        <img class="thumb" ng-src="{{step}}" />
+	
+    </div>
+    <input type="file" align="center" file-model="myFile" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" /><br><br>
+    <button ng-click="uploadFile()" align="center">upload me</button>
+	<h2 id="answer"></h2>
+	
+	<br/><br/><br/><br/><br/><br/>
+
+
+</div></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+<script>
+var myApp = angular.module('APP', []);
+
+myApp.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
+myApp.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl){
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(response){
+			console.log(response)
+			//$scope.val=response
+			if (response=="0"){answer=" It is a Daisy!!"}
+			else if (response=="1"){answer="It is a Dandelion!!"}
+			else if (response=="2"){answer="It is a Rose!!"}
+			else if (response=="3"){answer="It is a Sunflower!!"}
+			else if (response=="4"){answer="It is a Tulip"}
+			else {answer=response}
+			var idd=document.getElementById("answer")
+			idd.innerHTML=answer
+			myFunction=function(){
+			if (confirm('To rate us please click Ok')) 
+{
+window.location.href='rating.html';
+};}
+			//document.body.appendChild(id)
+			setTimeout(myFunction, 3000);
+			
+			return response
+        })
+        .error(function(response){
+			console.log(response);
+			var idd=document.getElementById("answer")
+			idd.innerHTML=response
+			
+			
+        });
+    }
+}]);
+
+myApp.controller('myCtrl', ['$scope', 'fileUpload','$http', function($scope, fileUpload,$http){
+     $scope.stepsModel = [];
+	 $scope.val="";
+	 $scope.myvar=0;
+
+    $scope.imageUpload = function(event){
+         var files = event.target.files; //FileList object
+         
+         for (var i = 0; i < files.length; i++) {
+             var file = files[i];
+                 var reader = new FileReader();
+                 reader.onload = $scope.imageIsLoaded; 
+                 reader.readAsDataURL(file);
+         }
+    }
+
+    $scope.imageIsLoaded = function(e){
+        $scope.$apply(function() {
+            $scope.stepsModel.push(e.target.result);
+        });
+    }
+
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.dir(file);
+        var uploadUrl = "http://localhost/app";
+        var r=fileUpload.uploadFileToUrl(file, uploadUrl);
+		$scope.val=r;
+		console.log($scope.val);
+		
+    };
+	$scope.uploadrating=function(){
+	var yo = $scope.myVar;console.log(yo);
+	var yos={"rating":yo}
+	//alert("Thank you for rating us!");
+	
+									$http.post("http://localhost/rating",yo).then(function(response)
+									{
+										console.log(response);
+										console.log(response.data);
+
+									}, function(error)
+										{
+											alert(error);
+										});
+								
+	
+	
+	};
+    
+}]);
+
+</script>
+</body>
+</html>

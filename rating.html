@@ -1,0 +1,312 @@
+<html  ng-app="notesapp">
+	<style>
+
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5em;
+	font-family: Verdana, Arial, san-serif;
+	font-size: 15px;
+			color: #ffffff;
+
+	background: #4b4743;
+	 
+color:#66FCF1;
+	
+
+}
+
+h1{display:inline;
+}
+h3{display:inline;float:right;}
+h2{float:center;}
+a{align:right;}
+.icon{display:inline;float:left;padding-right:180px;}
+.image{display:inline;padding-left:80px;}
+#actualbottom{padding-left:30px;color:white;}
+
+	.topnav {
+    overflow:hidden;
+    background-color:orange;
+}
+#about {
+  color: white;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.topnav p {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+    background-color: blue;
+    color: white;
+}
+#about {
+  color: white;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.topnav p {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+    background-color: blue;
+    color: white;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+ 
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  
+  
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+input {
+background-color: rgba(0,0,0,0.3);
+color: #66FCF1;
+border: none;
+}
+textarea{
+background-color: rgba(0,0,0,0.3);
+color: #66FCF1;
+border: none;
+}
+	</style>
+	<body  ng-controller="MainCtrl as ctrl">
+	<svg height="130" width="500">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"
+      style="stop-color:rgb(7,13,96);stop-opacity:1" />
+      <stop offset="100%"
+      style="stop-color:rgb(40,149,211);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)"/>
+  <text fill="orange" font-size="40" font-family="Verdana" 
+  x="50" y="86">FlowerRecognize!!</text>
+</svg>
+<br>
+<br>
+
+  <div class="topnav">
+  
+ <p><b><i>Ratings and Feedback</b></i></p>
+ 
+	<!--<a href="home.html" style="float:right;"><u>Back home</u></a>
+	<a href="nextrail.html" style="float:right;"><u>Click to Upload</u></a>-->
+
+	</div><br><br><br><br><br>
+	
+	<div class="split left">
+  <div class="centered">
+    
+ <br><br><br>
+ 
+	<h3>USER REVIEWS:</h3><br>
+	<br>
+	<div ng-repeat="note in ctrl.notes" >
+		
+		<span>{{note.user}} rated {{note.rating}} stars</span><br>
+		
+		
+	</div>	</div>	</div>
+	<div class="split right">
+	<br><br>
+  <div class="centered">
+  <br><br><br><br><br><br><br><br><br><br>
+    <form>
+  <b>PLEASE RATE US :<b><br><br>
+  Name:<br>
+  <input type="text" ng-model="ctrl.name" required ><br><br>
+  COMMENTS/FEEDBACK :<br>
+  <textarea ng-model="ctrl.comments" rows="5" cols="60" maxlength="200" required></textarea><br><br>
+  RATING (5 being the best):
+  <input type="radio" ng-model="ctrl.myVar" value="1" >1
+  <input type="radio" ng-model="ctrl.myVar" value="2">2
+  <input type="radio" ng-model="ctrl.myVar" value="3">3
+  <input type="radio" ng-model="ctrl.myVar" value="4">4
+  <input type="radio" ng-model="ctrl.myVar" value="5" checked="checked">5 <br><br>
+  <button ng-click="ctrl.uploadrating()" class="button">CONFIRM</button>
+</form>
+<div ng-switch="ctrl.myVar">
+  <div ng-switch-when="1">
+     <p>We would love to improve !<p>
+     
+  </div>
+   <div ng-switch-when="2">
+     <p>We would love to improve !</p>
+     
+  </div>
+  <div ng-switch-when="3">
+    
+     <p>We will add more features</p>
+  </div>
+  <div ng-switch-when="4">
+  
+     <p>We will add more features</p>
+  </div>
+  <div ng-switch-when="5">
+   
+     <p>Hope you use our service again</p>
+  </div>
+  </div>
+  </div>
+</div>
+	
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+	<script>
+		angular.module("notesapp",[]).controller("MainCtrl",['$http','$interval',function($http,$interval){
+			self=this
+			self.log=[]
+			self.name=""
+			self.comments=" "
+			self.call=function(){console.log("loop");
+				$http.get("http://localhost/modification").then(function(response)
+									{
+										console.log(response.data);
+										for(var key in response.data){
+     //console.log(key);
+	 //console.log(response.data[key]);
+	 self.notes.push({user:key,rating:response.data[key]});
+   }
+
+										
+									}, function(error)
+										{
+											alert(error);
+										});
+								}
+			$interval(self.call, 10000);
+			self.notes=[
+				
+			];	
+				self.uploadrating=function(){
+	var yo = self.myVar;
+	var names=self.name;
+	self.myVar=" ";
+	self.name=" ";
+	
+	self.comments=" ";
+	console.log(yo,names);
+	var yos={"rating":yo,"name":names};
+	var yos=names+"|"+yo;
+	console.log(yos);
+	//alert("Thank you for rating us!");
+	
+									$http.post("http://localhost/rating",yos).then(function(response)
+									{
+										console.log(response);
+										console.log(response.data);
+										alert("Thank you for rating us "+names+ " !");
+									}, function(error)
+										{
+											alert(error);
+										});
+								
+	
+	
+	};
+				self.getClass=function(status){
+					if(status){
+						return {done:true};
+					}
+					else
+						return {pending:true}
+				}
+				self.initial=function(){
+				$http.get("http://localhost/original").then(function(response)
+									{
+										console.log(response.data);
+										for(var key in response.data){
+     //console.log(key);
+	 //console.log(response.data[key]);
+	 self.notes.push({user:key,rating:response.data[key]});
+   }
+
+										
+									}, function(error)
+										{
+											alert(error);
+										});
+								
+				
+				}
+				self.initial()
+				
+		}]);
+	
+	</script>
+</html>

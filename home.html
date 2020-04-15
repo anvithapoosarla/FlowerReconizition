@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FLOWER RECOGNIZE!!!</title>
+
+
+<style>
+/** {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}*/
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  align-content: left;
+  opacity: 1;			
+}
+.icon{display:inline;float:left;padding-right:50px;}
+
+#actualbottom{;color:black;}
+
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 100%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+body {
+	
+    background-image: url("wood.jpeg");
+   /* background-color: white;*/
+    background-repeat: no-repeat;
+    background-size: 1366px 1366px;
+    margin: 0;
+    color: #6a6f8c;
+   
+    font: 600 16px/18px 'Open Sans', sans-serif;
+
+}
+.topnav {
+    overflow:hidden;
+    background-color: #2F4F4F;
+}
+#about {
+  color: white;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+    background-color: blue;
+    color: white;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
+}
+
+
+
+#img{
+	color: #074743;
+  	left:65px;
+	font-size: 25px;
+	position: relative;
+	
+	font-family: verdana;
+
+}
+#contact{
+	color: #074743;
+	font-size: 25px;
+	position: relative;
+	left: 0px;
+	bottom: 0px;
+	font-family: verdana;
+
+}
+
+
+ #a2{
+	position: relative;
+	left:  1300px;
+	font-family: Verdana;
+	
+}
+#a3{
+	position: relative;
+	left:  950px;
+	font-family: Verdana;
+}
+#a1{font-size: 27.5px; display: inline-block;}
+
+.top{
+
+  
+
+  position: relative;
+  left:500px;
+  color: #074743;
+  font-family: Verdana;
+  font-size: 50px;
+	position: relative;
+	/*left:370px;
+	color: #333333;
+	font-family: Verdana;
+	font-size: 80px;
+  background-image: url("thumb-350-905584 (2).jpg");
+  background-size: 1366px 100px;*/
+
+}
+/* Navbar container 
+.navbar {
+  overflow: hidden;
+  background-color: yellow;
+  font-family: Arial;
+  
+
+}
+
+ Links inside the navbar 
+.navbar a {
+  float:left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 18px 20px;
+  text-decoration:none;
+}
+
+ The dropdown container 
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+ Dropdown button 
+.dropdown .dropbtn {
+  font-size: 16px; 
+  border: none;
+  outline: none;
+  color: black;
+  padding: 18px 20px;
+  background-color: inherit;
+  font-family: inherit;  Important for vertical align on mobile phones 
+  margin: 0;  Important for vertical align on mobile phones 
+}
+
+ Add a red background color to navbar links on hover 
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: grey;
+}
+
+ Dropdown content (hidden by default) 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+ Links inside the dropdown 
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+ Add a grey background color to dropdown links on hover 
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+Show the dropdown menu on hover 
+.dropdown:hover .dropdown-content {
+  display: block;
+}*/
+#video{
+  left:100px;
+}
+.sidenav {
+    height: 25%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 1;
+    left: 1;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 20px;
+    margin-left: 25px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#jack
+{
+
+	padding-bottom: 20px;
+}
+#mySidenav
+{
+	left:410px;
+}
+#sparrow
+{
+	position: relative;
+}
+
+
+
+
+
+
+
+</style>
+
+
+
+</head>
+
+<style type="text/css">
+
+	a:link {
+    color: white;
+}
+
+
+	a:visited {
+    color: white;
+}
+
+	a:hover {
+    color: blue;
+    
+}
+
+	a:active {
+    color: red;
+}
+
+</style>
+<body>
+	
+	<svg height="130" width="500">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"
+      style="stop-color:rgb(7,13,96);stop-opacity:1" />
+      <stop offset="100%"
+      style="stop-color:rgb(40,149,211);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+  <text fill="orange" font-size="45" font-family="Verdana" 
+  x="50" y="86">FlowerRecognize!!</text>
+</svg>
+
+ <div class="topnav"><br>
+<!--  	 <div id="mySidenav" class="sidenav">
+  		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  		<a id="sparrow" href="#">About</a><br><br>
+  		<a id="sparrow" href="#">Services</a><br><br>
+ 		<a id="sparrow" href="contact.html">Contact</a>
+	</div>
+-->
+
+<span style="font-size:25px;color: white; cursor:pointer" onclick="openNav()">&#9776; </span>
+	
+    <a href="about.html" id="jack">About us</a>
+    <a href="nexttrail.html" id="jack">Prediction</a>
+    <a href="rating.html" id="jack">Ratings</a>
+
+   
+
+
+</div><br>
+
+
+
+
+</div>
+  
+ 
+
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+     
+
+ 
+
+
+<div class="slideshow-container">
+  <div id="img">
+  <br>
+  <h3><b>Flower Prediction!!!</b></h3>
+  <!--<h3><a href="nexttrail.html" id="jack">UPLOAD IMAGE TO KNOW THE FLOWER </a><h3>-->
+  
+   
+  
+  
+</div><br>
+<br>
+  <!--iframe id="video" width="450" height="300" src="The Joy of Books.mp4" autoplay allowfullscreen align="right">
+</iframe--> 
+
+<div class="mySlides fade">
+  
+  <img src="move.gif" width="500" height="300">
+  
+</div>
+
+										<!-- added ...................-->
+  
+<br>
+<br>
+
+<div id="bottom">
+	
+	<div id="actualbottom">
+<div class="icon">
+	
+	<div class="image"><img src="phone.png" height="50px"></div><br><br>
+	phone :+91 2343213456 &nbsp<br>
+	landline: 080 34343253
+</div>
+<div class="icon">
+	<div class="image"><img src="email.png" height="50px"></div><br><br>
+	mail:flowerrecognisesupport@gmail.com
+</div>
+<div class="icon">
+	      <div class="image"><img src="address.png" height="50px"></div><br><br>
+	Outer Ring Rd, Banashankari <br>3rd Stage
+	 Banashankari<br> Bengaluru, Karnataka 560085
+
+</div>
+</div>
+</div>
+
+<!--<div class="mySlides fade">
+ 
+  <img src="flower2.jpg" width="800" height="300">
+  
+</div>
+
+
+
+<div class="mySlides fade">
+  
+  <img src="flower 3.jpg" width="800" height="300">
+  
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="flower5.jpg" width="800" height="300">
+  
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="flower4.jpg" width="800" height="300">
+  
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="flower6.jpg" width="800" height="300">
+  
+</div>-->
+
+
+
+
+</div>
+<br>
+
+
+
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+</script>
+
+	
+
+	
+
+</body>
+</html>
